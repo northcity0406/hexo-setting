@@ -1,5 +1,5 @@
 ---
-title: JAVA原理解析和自定义注解
+title: JAVA注解原理解析和自定义注解
 date: 
 tags:
 	- JAVA
@@ -9,7 +9,7 @@ copyright: true
 ---
 
 ## 1.JAVA注解原理解析
-### 1.1 JAVA注解基本形式
+### JAVA注解基本形式
 >注解是Java 1.5引入的，可以提供代码的额外信息，目前正在被广泛应用。
 ```
 @Target(ElementType.TYPE)
@@ -26,8 +26,8 @@ public @interface Msg {
     1) @Interface关键字定义注解；
     2) 注解可以被其他的注解修饰；
     3) 注解和接口相似，内部可以定义常量和方法；
-### 1.2元注解
-#### 1.2.1 @Target 描述注解使用的范围
+### 元注解
+####  @Target 描述注解使用的范围
 
 |	范围描述						 |	作用						|
 |	:---:							|	:-----:					|
@@ -40,7 +40,7 @@ public @interface Msg {
 |	ElementType.FIELD				|	注解作用于属性					|
 |	ElementType.LOCAL_VARIABLE		|	注解作用于局部变量				|
 
-#### 1.2.2 @Retention 描述注解使用的范围
+####  @Retention 描述注解使用的范围
 | 范围描述  | 作用  |
 |:---:|:---:|
 | RetentionPolicy.SOURCE  | 源码中保留，编译期可以处理  |
@@ -49,16 +49,16 @@ public @interface Msg {
 
 **默认RetentionPolicy.CLASS值**
 
-#### 1.2.3 @Inherited注解
+#### @Inherited注解
 >@Inherited注解修饰的注解作用于一个类，则该注解将被用于该类的子类。
 
-#### 1.2.4 @Documented
+#### @Documented
 >描述注解可以**文档化**，是一个标记注解。在生成javadoc的时候，是不包含注释的，但是如果注解被@Documented修饰，则生成的文档就包含该注解。
 
 
-## 2.自定义JAVA注解
+## 自定义JAVA注解
 
-#### 2.1 自定义的Printer注解
+####  自定义的Printer注解
 ```
 import java.lang.annotation.*;
 
@@ -71,14 +71,14 @@ public @interface PrinterAnnotation {
 }
 ```
 
-#### 2.2 IPrinter的Printer接口
+####  IPrinter的Printer接口
 ```
 public interface IPrinter {
     public void Print();
 }
 ```
 
-#### 2.3 图片打印机的实现
+#### 图片打印机的实现
 ```
 import com.northcity.api.IPrinter;
 public class ImagePrinter implements IPrinter {
@@ -88,7 +88,7 @@ public class ImagePrinter implements IPrinter {
 }
 ```
 
-#### 2.4 文本打印机
+#### 文本打印机
 ```
 import com.northcity.api.IPrinter;
 public class TextPrinter implements IPrinter {
@@ -98,7 +98,7 @@ public class TextPrinter implements IPrinter {
 }
 ```
 
-#### 2.5 打印功能的实现
+#### 打印功能的实现
 ```
 import com.northcity.annotation.PrinterAnnotation;
 import com.northcity.api.IPrinter;
@@ -114,7 +114,7 @@ public class Printer{
 }
 ```
 
-#### 2.5 使用反射注入Printer
+#### 使用反射注入Printer
 ```
 import com.northcity.annotation.PrinterAnnotation;
 import com.northcity.impl.ImagePrinter;
